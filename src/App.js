@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import "./App.css";
 import JobAppBar from "./components/JobAppBar";
 import JobCard from "./components/JobCard";
