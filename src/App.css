@@ -25,3 +25,14 @@
   display: flex;
   justify-content: flex-start;
 }
+.job-detail-skill {
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: #95b9dd;
+  margin: 10px;
+  border-radius: 15px;
+}
+.wrap-job-detail-skill {
+  display: flex;
+  justify-content: flex-start;
+}

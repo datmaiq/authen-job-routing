@@ -4,14 +4,14 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-
-// const bull = (
-//   <Box component="span" sx={{ mx: "2px", transform: "scale(0.8)" }}>
-//     •
-//   </Box>
-// );
+import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
+import { useAuthContext } from "../context";
 
 export default function JobCard({ job }) {
+  const auth = useAuthContext();
+
+  const location = useLocation();
   return (
     <Card sx={{ maxHeight: 275 }}>
       <CardContent>
@@ -27,8 +27,10 @@ export default function JobCard({ job }) {
           sx={{ mb: 1.5 }}
           color="text.secondary"
         >
-          {job.skills.slice(0, 3).map((jobskill) => (
-            <div className="job-skill">{jobskill} </div>
+          {job.skills.slice(0, 3).map((jobskill, index) => (
+            <div key={index} className="job-skill">
+              {jobskill}{" "}
+            </div>
           ))}
         </Typography>
         <Typography variant="body2">{job.city}</Typography>
@@ -37,7 +39,29 @@ export default function JobCard({ job }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        {auth.login ? (
+          <Link
+            to={`/detail/${job.id}`}
+            state={{ backgroundLocation: location }}
+          >
+            <Button
+              // onClick={() => {
+              //   if (auth.login) {
+              //     navigate(`/login`);
+              //   } else {
+              //     navigate(`/login`);
+              //   }
+              // }}
+              size="small"
+            >
+              Learn More
+            </Button>
+          </Link>
+        ) : (
+          <Link to={`/login`} state={{ backgroundLocation: location }}>
+            <Button size="small">Learn More</Button>
+          </Link>
+        )}
       </CardActions>
     </Card>
   );
